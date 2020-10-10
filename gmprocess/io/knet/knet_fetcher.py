@@ -376,6 +376,9 @@ class KNETFetcher(DataFetcher):
                 if self.magnitude < mag:
                     threshold_distance = tdistance
                     break
+        else:
+            threshold_distance = 99999999999999.9
+                  
 
         newstreams = []
         for stream in streams:
