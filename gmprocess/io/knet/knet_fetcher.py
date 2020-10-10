@@ -285,7 +285,7 @@ class KNETFetcher(DataFetcher):
 
         return events
 
-    def retrieveData(self, event_dict):
+    def retrieveData(self, event_dict, stations=None):
         """Retrieve data from NIED, turn into StreamCollection.
 
         Args:
@@ -311,10 +311,17 @@ class KNETFetcher(DataFetcher):
         localfile = os.path.join(rawdir, fname)
 
         url = RETRIEVE_URL
+        
+        if stations == None:
+            dkind = ['all']
+        else:
+            dkind = stations
+            
         payload = {'formattype': ['A'],
                    'eqidlist': cgi_value,
                    'datanames': '%s;alldata' % firstid,
-                   'datakind': ['all']}
+                   'datakind': stations }
+
         logging.info('Downloading Japanese data into %s...' % localfile)
         req = requests.get(url, params=payload,
                            auth=(self.user, self.password))
