@@ -320,7 +320,7 @@ class KNETFetcher(DataFetcher):
         payload = {'formattype': ['A'],
                    'eqidlist': cgi_value,
                    'datanames': '%s;alldata' % firstid,
-                   'datakind': stations }
+                   'datakind': dkind }
 
         logging.info('Downloading Japanese data into %s...' % localfile)
         req = requests.get(url, params=payload,
